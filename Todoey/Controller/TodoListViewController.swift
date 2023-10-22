@@ -7,27 +7,18 @@
 //
 
 import UIKit
+import CoreData
 
 class TodoListViewController: UITableViewController {
+    
+    let persistenceController = PersistenceController.shared
 
     var itemArray = [Item]()
     let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("Items.plist")
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let newItem = Item()
-        newItem.title = "Buy Eggs"
-        itemArray.append(newItem)
-        
-        let newItem1 = Item()
-        newItem1.title = "Buy milk"
-        itemArray.append(newItem1)
-        
-        let newItem2 = Item()
-        newItem2.title = "build house"
-        itemArray.append(newItem2)
-        
+                
         readData()
     }
     
@@ -60,8 +51,9 @@ class TodoListViewController: UITableViewController {
         var textField = UITextField()
         let alert = UIAlertController(title: "Add New Todoey Item", message: "", preferredStyle: .alert)
         let action = UIAlertAction(title: "Add Item", style: .default) { (action) in
-            let newItem = Item()
+            let newItem = Item(context: self.persistenceController.container.viewContext)
             newItem.title = textField.text!
+            newItem.done = false
             self.itemArray.append(newItem)
             
             self.saveData()
@@ -80,24 +72,19 @@ class TodoListViewController: UITableViewController {
     }
     
     func saveData() {
-        let encoder = PropertyListEncoder()
-        
         do {
-            let data = try encoder.encode(itemArray)
-            try data.write(to: dataFilePath!)
+            try persistenceController.container.viewContext.save()
         } catch {
-            print("Error encoding item array, \(error)")
+            print("Error saving context, \(error)")
         }
     }
     
     func readData() {
-        if let data  = try? Data(contentsOf: dataFilePath!) {
-            let decoder = PropertyListDecoder()
-            do {
-                itemArray = try decoder.decode([Item].self, from: data)
-            } catch {
-                
-            }
+        let request : NSFetchRequest<Item> = Item.fetchRequest()
+        do {
+            itemArray = try persistenceController.container.viewContext.fetch(request)
+        } catch {
+            print("error fetching data: \(error)")
         }
     }
 }
