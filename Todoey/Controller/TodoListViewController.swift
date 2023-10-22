@@ -12,9 +12,13 @@ import CoreData
 class TodoListViewController: UITableViewController {
     
     let persistenceController = PersistenceController.shared
-
+    
     var itemArray = [Item]()
-    let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("Items.plist")
+    var selectedCategory : Category? {
+        didSet {
+            readData()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,7 +26,7 @@ class TodoListViewController: UITableViewController {
         readData()
     }
     
-    //MARK: - Tableview Datasource Methods
+    //MARK - Tableview Datasource Methods
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return itemArray.count
@@ -30,14 +34,13 @@ class TodoListViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ToDoItemCell", for: indexPath)
-        let item = itemArray[indexPath.row]
-        cell.textLabel?.text = item.title
-        cell.accessoryType = item.done ? .checkmark : .none
+        cell.textLabel?.text = itemArray[indexPath.row].title
+        cell.accessoryType = itemArray[indexPath.row].done ? .checkmark : .none
         saveData()
         return cell
     }
     
-    //MARK: - Tableview delegate methods
+    //MARK - Tableview delegate methods
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         itemArray[indexPath.row].done = !itemArray[indexPath.row].done
@@ -45,7 +48,7 @@ class TodoListViewController: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
     }
 
-    //MARK: - Add New Items
+    //MARK - Add New Items
     
     @IBAction func addPressed(_ sender: UIBarButtonItem) {
         var textField = UITextField()
@@ -54,6 +57,7 @@ class TodoListViewController: UITableViewController {
             let newItem = Item(context: self.persistenceController.container.viewContext)
             newItem.title = textField.text!
             newItem.done = false
+            newItem.parentCategory = self.selectedCategory
             self.itemArray.append(newItem)
             
             self.saveData()
@@ -71,6 +75,8 @@ class TodoListViewController: UITableViewController {
         present(alert, animated: true, completion: nil)
     }
     
+    //MARK - Model Methods
+    
     func saveData() {
         do {
             try persistenceController.container.viewContext.save()
@@ -79,13 +85,41 @@ class TodoListViewController: UITableViewController {
         }
     }
     
-    func readData() {
-        let request : NSFetchRequest<Item> = Item.fetchRequest()
+    func readData(with request: NSFetchRequest<Item> = Item.fetchRequest(), predicate: NSPredicate? = nil) {
+        
+        let categoryPredicate = NSPredicate(format: "parentCategory.name MATCHES %@", selectedCategory!.name!)
+        
+        if let additionalPredicate = predicate {
+            request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [additionalPredicate, categoryPredicate])
+        } else {
+            request.predicate = categoryPredicate
+        }
+        
         do {
             itemArray = try persistenceController.container.viewContext.fetch(request)
         } catch {
             print("error fetching data: \(error)")
         }
+        tableView.reloadData()
     }
 }
 
+//MARK: - Search Bar Methods
+
+extension TodoListViewController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        let request : NSFetchRequest<Item> = Item.fetchRequest()
+    //    request.predicate = NSPredicate(format: "title CONTAINS[cd] %@", searchBar.text!)
+        request.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
+        readData(with: request, predicate: NSPredicate(format: "title CONTAINS[cd] %@", searchBar.text!))
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchBar.text?.count == 0 {
+            readData()
+            DispatchQueue.main.async {
+                searchBar.resignFirstResponder()
+            }
+        }
+    }
+}
