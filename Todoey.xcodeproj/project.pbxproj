@@ -7,12 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		631D06D02AE596D300555D89 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631D06CF2AE596D300555D89 /* Persistence.swift */; };
 		631D06D22AE5B74900555D89 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631D06D12AE5B74900555D89 /* CategoryViewController.swift */; };
 		631D06D52AE5D0F600555D89 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 631D06D42AE5D0F600555D89 /* Realm */; };
 		631D06D72AE5D0F600555D89 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 631D06D62AE5D0F600555D89 /* RealmSwift */; };
 		631D06DB2AE5FAD600555D89 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631D06DA2AE5FAD600555D89 /* Item.swift */; };
 		631D06DD2AE5FAE600555D89 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631D06DC2AE5FAE600555D89 /* Category.swift */; };
+		631D06E02AE70B2000555D89 /* SwipeCellKit in Frameworks */ = {isa = PBXBuildFile; productRef = 631D06DF2AE70B2000555D89 /* SwipeCellKit */; };
+		631D06E22AE713F700555D89 /* SwipeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631D06E12AE713F700555D89 /* SwipeTableViewController.swift */; };
 		EB2BE4FA239524DB00FB933B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2BE4F9239524DB00FB933B /* AppDelegate.swift */; };
 		EB2BE4FE239524DB00FB933B /* TodoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2BE4FD239524DB00FB933B /* TodoListViewController.swift */; };
 		EB2BE501239524DB00FB933B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB2BE4FF239524DB00FB933B /* Main.storyboard */; };
@@ -21,10 +22,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		631D06CF2AE596D300555D89 /* Persistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		631D06D12AE5B74900555D89 /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 		631D06DA2AE5FAD600555D89 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		631D06DC2AE5FAE600555D89 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		631D06E12AE713F700555D89 /* SwipeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeTableViewController.swift; sourceTree = "<group>"; };
 		EB2BE4F6239524DB00FB933B /* Todoey.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Todoey.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB2BE4F9239524DB00FB933B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EB2BE4FD239524DB00FB933B /* TodoListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListViewController.swift; sourceTree = "<group>"; };
@@ -40,6 +41,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				631D06D72AE5D0F600555D89 /* RealmSwift in Frameworks */,
+				631D06E02AE70B2000555D89 /* SwipeCellKit in Frameworks */,
 				631D06D52AE5D0F600555D89 /* Realm in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -50,7 +52,6 @@
 		631D06A82AE5808000555D89 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				631D06CF2AE596D300555D89 /* Persistence.swift */,
 				631D06DA2AE5FAD600555D89 /* Item.swift */,
 				631D06DC2AE5FAE600555D89 /* Category.swift */,
 			);
@@ -71,6 +72,7 @@
 			children = (
 				631D06D12AE5B74900555D89 /* CategoryViewController.swift */,
 				EB2BE4FD239524DB00FB933B /* TodoListViewController.swift */,
+				631D06E12AE713F700555D89 /* SwipeTableViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -123,6 +125,7 @@
 			packageProductDependencies = (
 				631D06D42AE5D0F600555D89 /* Realm */,
 				631D06D62AE5D0F600555D89 /* RealmSwift */,
+				631D06DF2AE70B2000555D89 /* SwipeCellKit */,
 			);
 			productName = Todoey;
 			productReference = EB2BE4F6239524DB00FB933B /* Todoey.app */;
@@ -154,6 +157,7 @@
 			mainGroup = EB2BE4ED239524DB00FB933B;
 			packageReferences = (
 				631D06D32AE5D0F600555D89 /* XCRemoteSwiftPackageReference "realm-swift" */,
+				631D06DE2AE70B2000555D89 /* XCRemoteSwiftPackageReference "SwipeCellKit" */,
 			);
 			productRefGroup = EB2BE4F7239524DB00FB933B /* Products */;
 			projectDirPath = "";
@@ -186,7 +190,7 @@
 				EB2BE4FE239524DB00FB933B /* TodoListViewController.swift in Sources */,
 				631D06DB2AE5FAD600555D89 /* Item.swift in Sources */,
 				EB2BE4FA239524DB00FB933B /* AppDelegate.swift in Sources */,
-				631D06D02AE596D300555D89 /* Persistence.swift in Sources */,
+				631D06E22AE713F700555D89 /* SwipeTableViewController.swift in Sources */,
 				631D06DD2AE5FAE600555D89 /* Category.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -405,6 +409,14 @@
 				kind = branch;
 			};
 		};
+		631D06DE2AE70B2000555D89 /* XCRemoteSwiftPackageReference "SwipeCellKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwipeCellKit/SwipeCellKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -417,6 +429,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 631D06D32AE5D0F600555D89 /* XCRemoteSwiftPackageReference "realm-swift" */;
 			productName = RealmSwift;
+		};
+		631D06DF2AE70B2000555D89 /* SwipeCellKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 631D06DE2AE70B2000555D89 /* XCRemoteSwiftPackageReference "SwipeCellKit" */;
+			productName = SwipeCellKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
