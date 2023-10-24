@@ -14,6 +14,7 @@
 		631D06DD2AE5FAE600555D89 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631D06DC2AE5FAE600555D89 /* Category.swift */; };
 		631D06E02AE70B2000555D89 /* SwipeCellKit in Frameworks */ = {isa = PBXBuildFile; productRef = 631D06DF2AE70B2000555D89 /* SwipeCellKit */; };
 		631D06E22AE713F700555D89 /* SwipeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631D06E12AE713F700555D89 /* SwipeTableViewController.swift */; };
+		631D06E42AE8451600555D89 /* UIColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631D06E32AE8451600555D89 /* UIColorExtensions.swift */; };
 		EB2BE4FA239524DB00FB933B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2BE4F9239524DB00FB933B /* AppDelegate.swift */; };
 		EB2BE4FE239524DB00FB933B /* TodoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2BE4FD239524DB00FB933B /* TodoListViewController.swift */; };
 		EB2BE501239524DB00FB933B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB2BE4FF239524DB00FB933B /* Main.storyboard */; };
@@ -26,6 +27,7 @@
 		631D06DA2AE5FAD600555D89 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		631D06DC2AE5FAE600555D89 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		631D06E12AE713F700555D89 /* SwipeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeTableViewController.swift; sourceTree = "<group>"; };
+		631D06E32AE8451600555D89 /* UIColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtensions.swift; sourceTree = "<group>"; };
 		EB2BE4F6239524DB00FB933B /* Todoey.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Todoey.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB2BE4F9239524DB00FB933B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EB2BE4FD239524DB00FB933B /* TodoListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListViewController.swift; sourceTree = "<group>"; };
@@ -102,6 +104,7 @@
 				631D06AC2AE5810600555D89 /* Controller */,
 				EB2BE502239524DC00FB933B /* Assets.xcassets */,
 				EB2BE507239524DC00FB933B /* Info.plist */,
+				631D06E32AE8451600555D89 /* UIColorExtensions.swift */,
 			);
 			path = Todoey;
 			sourceTree = "<group>";
@@ -187,6 +190,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				631D06D22AE5B74900555D89 /* CategoryViewController.swift in Sources */,
+				631D06E42AE8451600555D89 /* UIColorExtensions.swift in Sources */,
 				EB2BE4FE239524DB00FB933B /* TodoListViewController.swift in Sources */,
 				631D06DB2AE5FAD600555D89 /* Item.swift in Sources */,
 				EB2BE4FA239524DB00FB933B /* AppDelegate.swift in Sources */,
