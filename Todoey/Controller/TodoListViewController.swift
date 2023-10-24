@@ -13,6 +13,8 @@ class TodoListViewController: SwipeTableViewController {
     
     let realm = try! Realm()
     
+    @IBOutlet weak var searchBar: UISearchBar!
+    
     var items: Results<Item>?
     var selectedCategory : Category? {
         didSet {
@@ -27,6 +29,16 @@ class TodoListViewController: SwipeTableViewController {
         }
                 
         readData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if let safeColor = selectedCategory?.color {
+            guard let navBar = navigationController?.navigationBar else {fatalError("Navigation controller doesn't exist")}
+            navBar.barTintColor = UIColor(hex: safeColor)
+            navBar.tintColor = .white
+            navBar.scrollEdgeAppearance?.backgroundColor = UIColor(hex: safeColor)
+            searchBar.barTintColor = UIColor(hex: safeColor)
+        }
     }
     
     //MARK - Tableview Datasource Methods

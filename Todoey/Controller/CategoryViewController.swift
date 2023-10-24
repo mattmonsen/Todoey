@@ -20,6 +20,11 @@ class CategoryViewController: SwipeTableViewController {
 
         readData()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        guard let navBar = navigationController?.navigationBar else {fatalError("Navigation controller doesn't exist")}
+        navBar.scrollEdgeAppearance?.backgroundColor = UIColor(hex: "1D9BF6")
+    }
 
     //MARK: - TableView Datasource Methods
     
